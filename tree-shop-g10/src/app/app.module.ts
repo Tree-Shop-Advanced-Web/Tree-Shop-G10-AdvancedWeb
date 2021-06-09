@@ -7,18 +7,24 @@ import { AddproductComponent } from './components/addproduct/addproduct.componen
 import { OderComponent } from './components/oder/oder.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AddminOrderComponent } from './components/addmin-order/addmin-order.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
     AddproductComponent,
     OderComponent,
     HeaderComponent,
-    AddminOrderComponent
+    AddminOrderComponent,
+
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
