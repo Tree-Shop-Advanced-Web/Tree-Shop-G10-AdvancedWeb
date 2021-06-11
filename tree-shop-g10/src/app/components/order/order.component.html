@@ -6,7 +6,7 @@
         <table class="table table-striped table-inverse">
             <thead class="thead-inverse">
                 <tr>
-                    <th>ID.</th>
+                    <th>No.</th>
                     <th>รายละเอียด</th>
                     <th>ราคารวม</th>
                     <th>สถานะ</th>
@@ -15,12 +15,13 @@
             </thead>
             <tbody>
                 <tr *ngFor="let item of orders; index as i">
-                    <td scope="row">{{item.id}}</td>
+                    <td scope="row">{{i+1}}</td>
                     <td>{{item.detail}}</td>
                     <td>{{item.price}}</td>
                     <td>{{item.status}}</td>
-                    <td><input class="form-control form-control-sm" id="formFileSm" type="file" (change)="onChangeImg($event)">   
-                        <button *ngIf="item.statusbutton && (item.status == 'รอโอนเงิน')" type="button" class="btn btn-primary">Primary</button>
+                    <td><input id="formFileSm" type="file" (change)="onChangeImg($event,i)">   
+                        <button *ngIf="status[i] && item.status == 'tranfer'" type="button" class="btn btn-primary" (click)="putOrder(i)">ยืนยัน</button>
+                        <button  id="cancle" type="button" class="btn btn-danger" (click)="putOrder(i)">ยกเลิก</button>
                     </td>
                 </tr>
             </tbody>

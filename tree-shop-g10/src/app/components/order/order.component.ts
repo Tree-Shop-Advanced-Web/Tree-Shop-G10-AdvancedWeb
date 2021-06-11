@@ -7,6 +7,7 @@ import { OderService} from '../../services/oder.service'
 })
 export class OderComponent implements OnInit {
   orders:any
+  status: boolean[] = []; 
   constructor(private od:OderService) {this.onLoading() }
 
   ngOnInit(): void {
@@ -14,9 +15,15 @@ export class OderComponent implements OnInit {
 
   onLoading(){
     try{
-      this.od.getOders().subscribe(
+      this.od.getOdersByUserId("1").subscribe(
         data =>{
+          console.log(data.length);
           this.orders = data
+          for (let i = 0; i < data.length; i++) {
+            this.status[i] = false
+            console.log(this.status[i]);
+            
+          }
         },
         err =>{
            console.log(err);
@@ -28,7 +35,7 @@ export class OderComponent implements OnInit {
   }
 
 
-  onChangeImg(e:any){
+  onChangeImg(e:any,i:number){
     if(e.target.files.length > 0){
       const file = e.target.files[0]
       var pattern = /image-*/
@@ -39,14 +46,25 @@ export class OderComponent implements OnInit {
         reader.readAsDataURL(file)
         reader.onload = () =>{
           this.orders.statusbutton = true
-          /*this.productForm.patchValue({
-            img:reader.result
-          })*/
+          this.status[i] = true;
+          console.log(this.status[i]);
+          this.orders[i].img = reader.result       
         }
       }
     }
   }
- accept(){
-
+ putOrder(i:number){
+   this.orders[i].status = "confirmation"
+  this.od.PutOrder(this.orders[i]).subscribe(
+    data =>{
+      console.log(data)
+      this.status[i] =false;
+    },
+    err =>{
+      console.log(err);
+      
+    }
+  )
  }
+
 }
