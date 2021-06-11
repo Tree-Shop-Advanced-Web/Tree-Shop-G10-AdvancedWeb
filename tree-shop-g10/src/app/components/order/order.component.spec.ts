@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OderComponent } from './oder.component';
+import { OderComponent } from './order.component';
 
-describe('OderComponent', () => {
+describe('OrderComponent', () => {
   let component: OderComponent;
   let fixture: ComponentFixture<OderComponent>;
 

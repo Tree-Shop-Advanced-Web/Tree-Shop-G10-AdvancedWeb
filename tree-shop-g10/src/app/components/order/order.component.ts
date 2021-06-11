@@ -6,7 +6,6 @@ import { OderService} from '../../services/oder.service'
   styleUrls: ['./order.component.css']
 })
 export class OderComponent implements OnInit {
-  button:boolean = false
   orders:any
   constructor(private od:OderService) {this.onLoading() }
 
@@ -39,7 +38,7 @@ export class OderComponent implements OnInit {
       }else{
         reader.readAsDataURL(file)
         reader.onload = () =>{
-          this.button = true
+          this.orders.statusbutton = true
           /*this.productForm.patchValue({
             img:reader.result
           })*/

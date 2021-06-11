@@ -11,6 +11,7 @@ const productSchema = Schema({
     detail:String,
     quantity:Number,
     price:Number,
+    img:String
 
 },{
     coolection:'products'
@@ -23,22 +24,23 @@ try{
 }
 
 const insertProduct = (dataProduct)=>{
-    return new Promise ((resolve , reject)=>{
-        var new_product = new Product({
+    return new Promise((resolve, reject) => {
+        var new_product = new Product(
             dataProduct
-        })
+        )
         new_product.save((err,data)=>{
             if(err){
-                reject(new Error('Cannot insert product to DB!'))
-            }
-            else{
-                resolve({message:'Sing up successfully'})
+                reject(new Error('Cannot insert product to DB!!!'))
+            }else{
+                resolve({message:'Product added successfully'})
             }
         })
     })
 }
-router.route('/insert').get(authorization,(req,res)=>{
-    insertProduct(req.body).then(result=>{
+
+router.route('/add').post((req,res)=>{
+    console.log('add');
+    insertProduct(req.body).then(result =>{
         console.log(result);
         res.status(200).json(result)
     }).catch(err=>{

@@ -20,7 +20,7 @@
                     <td>{{item.price}}</td>
                     <td>{{item.status}}</td>
                     <td><input class="form-control form-control-sm" id="formFileSm" type="file" (change)="onChangeImg($event)">   
-                        <button *ngIf="button" type="button" class="btn btn-primary">Primary</button>
+                        <button *ngIf="item.statusbutton && (item.status == 'รอโอนเงิน')" type="button" class="btn btn-primary">Primary</button>
                     </td>
                 </tr>
             </tbody>

@@ -5,12 +5,11 @@ const mongoose = require('mongoose')
 
 var Schema = require("mongoose").Schema
 const orderSchema = Schema({
-    id:String,
+    userid:String,
     detail:String,
     price:Number,
     img:String,
     status:String,
-    statusbutton:Boolean,
 },{
     coolection:'orders'
 })
@@ -20,18 +19,18 @@ try{
 }catch(error){
     Orders=mongoose.model('orders',orderSchema)
 }
-
+mongoose.set('useFindAndModify', false);
 
 const getOrders = () =>{
     return new  Promise((resolve, reject)=>{
         Orders.find({},(err,data)=>{
             if(err){
-                reject(new Error('Cannot get products !!!'))
+                reject(new Error('Cannot get order !!!'))
             }else{
                if(data){
                    resolve(data)
                }else{
-                reject(new Error('Cannot get products !!!'))
+                reject(new Error('Cannot get order !!!'))
                }
             }
         })
@@ -39,23 +38,24 @@ const getOrders = () =>{
 }
 const getOrdersById = (id) =>{
     return new  Promise((resolve, reject)=>{
-        Orders.find({id:id},(err,data)=>{
+        Orders.find({userid:id},(err,data)=>{
             if(err){
-                reject(new Error('Cannot get products !!!'))
+                reject(new Error('Cannot get order !!!'))
             }else{
                if(data){
                    resolve(data)
                }else{
-                reject(new Error('Cannot get products !!!'))
+                reject(new Error('Cannot get order !!!'))
                }
             }
         })
     })
 }
 
-const pushOderById = (order) =>{
+const pushOderById = (orderData) =>{
+    console.log(orderData);
     return new  Promise((resolve, reject)=>{
-        Orders.findOneAndUpdate({id:order.id},{ $push: {  } },(err,data)=>{
+        Orders.findOneAndUpdate({_id:orderData._id},{ img:orderData.img , status:orderData.status},(err,data)=>{
             if(err){
                 reject(new Error('Cannot get products !!!'))
             }else{
@@ -68,17 +68,16 @@ const pushOderById = (order) =>{
         })
     })
 }
-const insertOder = (order) =>{
-    return new Promise ((resolve , reject)=>{
-        var new_order = new Orders({
-            order
-        })
-        new_order.save((err,data)=>{
+const insertOder = (dataOrder) =>{
+    return new Promise((resolve, reject) => {
+        var new_product = new Orders(
+            dataOrder
+        )
+        new_product.save((err,data)=>{
             if(err){
-                reject(new Error('Cannot insert product to DB!'))
-            }
-            else{
-                resolve({message:'Sing up successfully'})
+                reject(new Error('Cannot insert order to DB!!!'))
+            }else{
+                resolve({message:'Order added successfully'})
             }
         })
     })
@@ -99,16 +98,24 @@ router.route('/get').get((req,res)=>{
         console.log(err);
     }) 
 })
-router.route('/post').get((req,res)=>{
-    insertOder(req.body).then(result=>{
+router.route('/post').post((req,res)=>{
+    console.log('add');
+    insertOder(req.body).then(result =>{
         console.log(result);
         res.status(200).json(result)
     }).catch(err=>{
         console.log(err);
     })
 })
-router.route('/put').get((req,res)=>{
-    
+router.route('/put').put((req,res)=>{
+    console.log(req.body);
+    console.log("put");
+    pushOderById(req.body).then(result =>{
+        console.log(result);
+        res.status(200).json(result)
+    }).catch(err=>{
+        console.log(err);
+    })
 })
 
 module.exports = router
