@@ -28,6 +28,8 @@ expressApp.use((req,res,next)=>{
 
 expressApp.use('/api/products',require('./api/products'))
 expressApp.use('/api/order',require('./api/order'))
+expressApp.use('/user', require('./router/user'))
+expressApp.use('/login', require('./router/signin'))
 
 expressApp.listen(3000,function(){
     console.log('Listening on port 3000');
