@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { AddAddressComponent } from './components/add-address/add-address.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +22,7 @@ import { SignupComponent } from './components/signup/signup.component';
     AddminOrderComponent,
     SigninComponent,
     SignupComponent,
+    AddAddressComponent,
   ],
   imports: [
     BrowserModule,

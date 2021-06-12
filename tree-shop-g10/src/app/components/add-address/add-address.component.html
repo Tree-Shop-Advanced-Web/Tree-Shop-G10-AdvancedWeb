@@ -1,0 +1,83 @@
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Add Addersses</h4>
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <form [formGroup]="addressForm">
+                    <div class="card">
+                        <div class="card-header">
+                            Address Form
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    ID:
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                      <input type="number" class="form-control" formControlName='id'>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    firstname:
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                      <input type="text" class="form-control" formControlName='firstname'>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    lastname:
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                      <input type="text" class="form-control" formControlName='lastname'>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    phonenumber:
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                      <input type="number" class="form-control" formControlName='phonenumber'>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    address detail:
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName='address'></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="reset" class="btn btn-danger" (click)="resetForm()" id="cancle">Reset</button>
+                                    <button type="button" class="btn btn-primary" (click)="addAddress()" id="accept">Add</button>&nbsp;
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-8">
+            </div>
+        </div>
+    </div>
+</div>
