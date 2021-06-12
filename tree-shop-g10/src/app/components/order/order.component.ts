@@ -15,14 +15,13 @@ export class OderComponent implements OnInit {
 
   onLoading(){
     try{
-      this.od.getOdersByUserId("1").subscribe(
+      this.od.getOdersByUserId().subscribe(
         data =>{
           console.log(data.length);
           this.orders = data
           for (let i = 0; i < data.length; i++) {
             this.status[i] = false
             console.log(this.status[i]);
-            
           }
         },
         err =>{
@@ -63,6 +62,17 @@ export class OderComponent implements OnInit {
     err =>{
       console.log(err);
       
+    }
+  )
+ }
+
+ deleteOrder(i:number){
+  this.od.DeleteOrder(this.orders[i]).subscribe(
+    data =>{
+      window.location.reload();
+    },
+    err =>{
+      console.log(err);
     }
   )
  }

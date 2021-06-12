@@ -1,6 +1,6 @@
 var expressFunction = require('express')
 const router = expressFunction.Router()
-//const authorization = require('../config/authorize')
+const authorization = require('../config/authorize')
 const mongoose = require('mongoose')
 
 var Schema = require("mongoose").Schema
@@ -10,6 +10,7 @@ const orderSchema = Schema({
     price:Number,
     img:String,
     status:String,
+    cartid:String
 },{
     coolection:'orders'
 })
@@ -36,9 +37,10 @@ const getOrders = () =>{
         })
     })
 }
-const getOrdersById = (id) =>{
+
+const delteOrderById = (id) =>{
     return new  Promise((resolve, reject)=>{
-        Orders.find({userid:id},(err,data)=>{
+        Orders.findOneAndRemove({_id:id},(err,data)=>{
             if(err){
                 reject(new Error('Cannot get order !!!'))
             }else{
@@ -52,17 +54,33 @@ const getOrdersById = (id) =>{
     })
 }
 
-const pushOderById = (orderData) =>{
-    console.log(orderData);
+const getOrdersById = (id) =>{
     return new  Promise((resolve, reject)=>{
-        Orders.findOneAndUpdate({_id:orderData._id},{ img:orderData.img , status:orderData.status},(err,data)=>{
+        Orders.find({userid:id},(err,data)=>{
             if(err){
-                reject(new Error('Cannot get products !!!'))
+                reject(new Error('Cannot delete order !!!'))
             }else{
                if(data){
                    resolve(data)
                }else{
-                reject(new Error('Cannot get products !!!'))
+                reject(new Error('Cannot delete order !!!'))
+               }
+            }
+        })
+    })
+}
+
+const putOderById = (orderData) =>{
+    console.log(orderData);
+    return new  Promise((resolve, reject)=>{
+        Orders.findOneAndUpdate({_id:orderData._id},{ img:orderData.img , status:orderData.status},(err,data)=>{
+            if(err){
+                reject(new Error('Cannot put products !!!'))
+            }else{
+               if(data){
+                   resolve(data)
+               }else{
+                reject(new Error('Cannot put products !!!'))
                }
             }
         })
@@ -82,7 +100,7 @@ const insertOder = (dataOrder) =>{
         })
     })
 }
-router.route('/get/:id').get((req,res)=>{
+router.route('/get/:id').get(authorization,(req,res)=>{
     getOrdersById(req.params.id).then(result =>{
         console.log(result);
         res.status(200).json(result)
@@ -90,7 +108,7 @@ router.route('/get/:id').get((req,res)=>{
         console.log(err);
     }) 
 })
-router.route('/get').get((req,res)=>{
+router.route('/get').get(authorization,(req,res)=>{
     getOrders(req.body).then(result =>{
         console.log(result);
         res.status(200).json(result)
@@ -98,7 +116,7 @@ router.route('/get').get((req,res)=>{
         console.log(err);
     }) 
 })
-router.route('/post').post((req,res)=>{
+router.route('/post').post(authorization,(req,res)=>{
     console.log('add');
     insertOder(req.body).then(result =>{
         console.log(result);
@@ -107,10 +125,17 @@ router.route('/post').post((req,res)=>{
         console.log(err);
     })
 })
-router.route('/put').put((req,res)=>{
-    console.log(req.body);
-    console.log("put");
-    pushOderById(req.body).then(result =>{
+router.route('/put').put(authorization,(req,res)=>{
+    putOderById(req.body).then(result =>{
+        console.log(result);
+        res.status(200).json(result)
+    }).catch(err=>{
+        console.log(err);
+    })
+})
+
+router.route('/delete/:id').delete(authorization,(req,res)=>{
+    delteOrderById(req.params.id).then(result =>{
         console.log(result);
         res.status(200).json(result)
     }).catch(err=>{

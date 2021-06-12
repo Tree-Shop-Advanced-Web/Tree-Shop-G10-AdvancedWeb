@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OderService} from '../../services/oder.service'
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-addmin-order',
   templateUrl: './addmin-order.component.html',
@@ -8,7 +9,8 @@ import { OderService} from '../../services/oder.service'
 export class AddminOrderComponent implements OnInit {
 
   orders:any
-  constructor(private od:OderService) {this.onLoading() }
+  img:string = " "
+  constructor(private od:OderService,private modalService: NgbModal) {this.onLoading() }
 
   ngOnInit(): void {
   }
@@ -26,5 +28,22 @@ export class AddminOrderComponent implements OnInit {
       console.log(err);
       
     }
+  }
+  openLg(content:any,img:string) {
+    this.img = img
+    this.modalService.open(content, { size: 'lg' });
+  }
+
+  conferm(i:number){
+    this.orders[i].status = "success"
+    this.od.PutOrder(this.orders[i]).subscribe(
+      data =>{
+        console.log(data)
+      },
+      err =>{
+        console.log(err);
+        
+      }
+    )
   }
 }
