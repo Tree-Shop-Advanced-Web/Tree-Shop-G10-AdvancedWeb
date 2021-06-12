@@ -9,10 +9,13 @@ import { LocalStorageService } from 'angular-web-storage'
 export class OderService {
   oders: any 
   constructor(private http: HttpClient,public local: LocalStorageService) { }
-   headers = new Headers();
+
 
   getOders(){
-    return this.http.get<any>('http://localhost:3000/api/order/get').pipe(map(data => {
+    let token = this.local.get('user').token
+    return this.http.get<any>('http://localhost:3000/api/order/get',{
+      headers: new HttpHeaders().set('Authorization', token),
+    }).pipe(map(data => {
       if(data){
         this.oders=data
         console.log(this.oders); 

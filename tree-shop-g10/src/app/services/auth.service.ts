@@ -13,6 +13,8 @@ export class AuthService {
   signin(authData: any) {
     console.log(authData);
     return this.http.post<any>('http://localhost:3000/login/signin', authData).pipe(map(data => {
+      console.log(data);
+      
       if (data) {
         this.local.set('user', data,1,'w') 
         console.log(this.local.get('user'))

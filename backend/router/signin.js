@@ -12,6 +12,7 @@ var Schema = require("mongoose").Schema;
 const userSchema = Schema({
     username: String,
     password: String,
+    role: String
 }, {
     collection: 'users'
 });
@@ -42,7 +43,7 @@ const findUser = (username) => {
                 reject(new Error('Cannont find username!'));
             } else {
                 if (data) {
-                    resolve({ id: data._id, username: data.username, password: data.password })
+                    resolve({ id: data._id, username: data.username, password: data.password ,role:data.role})
                 } else {
                     reject(new Error('Cannont find username!'));
                 }
@@ -55,7 +56,7 @@ router.route('/signin')
     .post(async (req, res) => {
         const playload = {
             username: req.body.username,
-            password: req.body.password
+            password: req.body.password,
         };
 
         console.log(playload);
@@ -63,9 +64,8 @@ router.route('/signin')
         try {
             const result = await findUser(playload.username);
             const loginStatus = await compareHash(playload.password, result.password);
-
             const status = loginStatus.status;
-
+            console.log("re " , result);
             if (status) {
                 const token = jwt.sign(result, key, { expiresIn: 60 * 5 });
                 res.status(200).json({ result, token, status });

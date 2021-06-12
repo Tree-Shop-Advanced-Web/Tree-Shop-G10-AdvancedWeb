@@ -38,8 +38,12 @@
             <a href="#home" class="w3-bar-item w3-button w3-wide">LOGO</a>
             <!-- Right-sided navbar links -->
             <div class="w3-right w3-hide-small">
-                <a *ngIf="local.get('user') == null"  class="w3-bar-item w3-button"  routerLink="signin" routerLinkActive="active">Login</a>
-                <a *ngIf="local.get('user') != null"  class="w3-bar-item w3-button"  (click)="logout()" >Logout</a>
+                <a *ngIf="getRole() == 'admin'"  class="w3-bar-item w3-button"  routerLink="addminorder" routerLinkActive="active">Order</a>
+                <a *ngIf="getRole() == 'admin'"  class="w3-bar-item w3-button"  routerLink="addproduct" routerLinkActive="active">Add Product</a>
+                <a *ngIf="local.get('user') != null"  class="w3-bar-item w3-button" >{{getUser()}}</a>
+                <a id ="login"*ngIf="local.get('user') == null"  class="w3-bar-item w3-button"  routerLink="signin" routerLinkActive="active">Login</a>
+                <a *ngIf="local.get('user') != null"  class="w3-bar-item w3-button" routerLink="" routerLinkActive="active" (click)="logout()" >Logout</a>
+                
             </div>
             <!-- Hide right-floated links on small screens and replace them with a menu icon -->
 
