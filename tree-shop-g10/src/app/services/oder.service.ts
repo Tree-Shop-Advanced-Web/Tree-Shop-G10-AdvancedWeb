@@ -63,4 +63,17 @@ export class OderService {
     }))
   }
 
+  PostOrder(oder:any){
+    let token = this.local.get('user').token
+    return this.http.post<any>('http://localhost:3000/api/order/post/',oder,{
+      headers: new HttpHeaders().set('Authorization', token),
+    }).pipe(map(data => {
+      if(data){
+        this.oders=data
+        console.log(this.oders); 
+      }
+      return this.oders
+    }))
+  }
+
 }
