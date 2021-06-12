@@ -2,10 +2,11 @@ const jwt = require('jsonwebtoken')
 const key = 'MY_KEY'
 const authorization = ((req,res,next)=>{
     const token = req.headers['authorization']
+    console.log("token", token);
     if(token === undefined){
         return res.status(401).json({
             "status":401,
-            "message":'Unauthorized'
+            "message":'Unauthorized1'
         })
     }
     else{
@@ -13,11 +14,11 @@ const authorization = ((req,res,next)=>{
             if(err){
                 return res.status(401).json({
                     "status":401,
-                    "message":'Unauthorized'
+                    "message":'Unauthorized2'
                 })
             }
             else{
-                console.log(decode);
+                console.log("ok");
                 next()
             }
         })

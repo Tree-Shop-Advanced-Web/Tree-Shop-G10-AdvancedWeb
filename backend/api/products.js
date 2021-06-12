@@ -37,7 +37,7 @@ const insertProduct = (dataProduct)=>{
     })
 }
 
-router.route('/add').post((req,res)=>{
+router.route('/add').post(authorization,(req,res)=>{
     console.log('add');
     insertProduct(req.body).then(result =>{
         console.log(result);
