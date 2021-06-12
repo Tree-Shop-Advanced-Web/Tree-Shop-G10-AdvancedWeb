@@ -21,7 +21,7 @@ export class SigninComponent implements OnInit {
       this.auth.signin(this.authForm.value).subscribe(
         data => {
           if(data.status == true){
-            alert('login OK');
+            this.router.navigate([''])
           }else{
             alert('Username or Password is insorrect');
           }
