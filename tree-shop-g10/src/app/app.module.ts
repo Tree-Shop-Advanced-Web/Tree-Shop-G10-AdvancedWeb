@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AddAddressComponent } from './components/add-address/add-address.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { AddAddressComponent } from './components/add-address/add-address.compon
     SigninComponent,
     SignupComponent,
     AddAddressComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
