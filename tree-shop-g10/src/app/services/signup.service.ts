@@ -10,8 +10,6 @@ export class SignupService {
   constructor(private http: HttpClient,public local: LocalStorageService) { }
   signups(signupData: any){
     signupData.role = "user"
-    console.log(signupData);
-    
     return this.http.post<any>('http://localhost:3000/user/signup', signupData)
     .pipe(map(data=>{
       if(data){

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SignupService } from '../../services/signup.service'
 import { Router } from '@angular/router'
 
@@ -10,15 +10,16 @@ import { Router } from '@angular/router'
 })
 export class SignupComponent implements OnInit {
   signupForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
+    username: new FormControl('',[Validators.required,Validators.email]),
+    password: new FormControl('',[Validators.required]),
     role: new FormControl('')
   });
   constructor(private router: Router,private signup: SignupService) { }
-
   ngOnInit(): void {
   }
-  register(){
+  register(){  
+    console.log(this.fromdata.password.errors?.minlength.actualLength);
+    
     this.signup.signups(this.signupForm.value).subscribe(
       data => {
         if(data.message){
@@ -31,6 +32,11 @@ export class SignupComponent implements OnInit {
         console.log(err);
         alert('Cannot Sign up');
       });
-
   }
+  get fromdata(){
+    return this.signupForm.controls
+  }
+
+  
+  
 }

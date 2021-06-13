@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddproductComponent } from './components/addproduct/addproduct.component';
@@ -14,7 +13,17 @@ import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AddAddressComponent } from './components/add-address/add-address.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ProductComponent } from './components/product/product.component';
+
 @NgModule({
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgbModule
+  ],
   declarations: [
     AppComponent,
     AddproductComponent,
@@ -25,15 +34,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     SignupComponent,
     AddAddressComponent,
     SidebarComponent,
+    ProductComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    FormsModule,
-    NgbModule
-  ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

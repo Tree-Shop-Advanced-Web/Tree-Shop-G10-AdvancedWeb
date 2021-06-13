@@ -59,19 +59,19 @@
 <body>
 
     <div class="w3-row-padding w3-margin-top">
-      
-        <div class="w3-quarter">
+     
+        <div *ngFor="let item of products; index as i;" class="w3-quarter">
             <div class="w3-card">
             <div class="w3-display-container">
-                <img src="assets\1.jpg" class="w3-hover-opacity" style="width:100%">
+                <img [src]="item.img" class="w3-hover-opacity" style="width:100%">
                 <div class="w3-display-middle w3-display-hover">
                   <button class="w3-button w3-black" >Buy now <i class="fa fa-shopping-cart"></i></button>
                 </div>
               </div>
-              <p id="aad">Mega Ripped Jeans<br><b>$19.99</b></p>
+              <p id="aad">Mega Ripped Jeans<br><b>{{item.price}}</b></p>
             </div>
         </div>
-
+      
   </div>
 
 <!-- Pagination -->
