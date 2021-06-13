@@ -24,8 +24,5 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.local.clear()
   }
-  getCounter() {
-    return this.CartService.getCounter();
-  }
 
 }

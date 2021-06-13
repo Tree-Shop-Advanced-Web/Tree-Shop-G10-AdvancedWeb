@@ -26,8 +26,8 @@ export class OderService {
 
   getOdersByUserId(){
     let token = this.local.get('user').token
-    let userid = this.local.get('user')._id
-    return this.http.get<any>('http://localhost:3000/api/order/get/1',{
+    let userid = this.local.get('user').result.id
+    return this.http.get<any>('http://localhost:3000/api/order/get/'+userid,{
       headers: new HttpHeaders().set('Authorization', token),
     }).pipe(map(data => {
       if(data){
@@ -68,6 +68,9 @@ export class OderService {
 
   PostOrder(oder:any){
     let token = this.local.get('user').token
+    let userid = this.local.get('user').result.id
+    oder.userid=userid
+    console.log(oder);
     return this.http.post<any>('http://localhost:3000/api/order/post/',oder,{
       headers: new HttpHeaders().set('Authorization', token),
     }).pipe(map(data => {

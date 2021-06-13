@@ -9,6 +9,7 @@ import { AddAddressComponent } from './components/add-address/add-address.compon
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProductComponent }from './components/product/product.component';
 import { BrowserModule } from '@angular/platform-browser'
+import { CartComponent } from './components/cart/cart.component';
 const routes: Routes = [
   {path:'addproduct',component:AddproductComponent},
   {path:'order',component:OderComponent},
@@ -18,12 +19,14 @@ const routes: Routes = [
   {path:'add-address',component:AddAddressComponent},
   {path:'profile',component:ProfileComponent},
   {path:'product',component:ProductComponent},
+  {path:'cart',component:CartComponent},
   {path:'',component:ProductComponent}
 
 ];
 
 @NgModule({
   imports: [BrowserModule,RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  
 })
 export class AppRoutingModule { }

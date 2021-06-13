@@ -25,7 +25,7 @@ expressApp.use((req,res,next)=>{
         res.status(501).send('Cannot connect to MongoDB')
     })
 })
-
+expressApp.use('/api/cart', require('./api/cart'))
 expressApp.use('/api/products',require('./api/products'))
 expressApp.use('/api/order',require('./api/order'))
 expressApp.use('/api/user',require('./api/user'))

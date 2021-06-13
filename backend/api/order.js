@@ -10,7 +10,6 @@ const orderSchema = Schema({
     price:Number,
     img:String,
     status:String,
-    cartid:String
 },{
     coolection:'orders'
 })
@@ -117,7 +116,6 @@ router.route('/get').get(authorization,(req,res)=>{
     }) 
 })
 router.route('/post').post(authorization,(req,res)=>{
-    console.log('add');
     insertOder(req.body).then(result =>{
         console.log(result);
         res.status(200).json(result)

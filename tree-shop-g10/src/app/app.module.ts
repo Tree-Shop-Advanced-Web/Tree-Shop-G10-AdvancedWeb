@@ -14,6 +14,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { AddAddressComponent } from './components/add-address/add-address.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ProductComponent } from './components/product/product.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,7 @@ import { ProductComponent } from './components/product/product.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    NgbModule
+    NgbModule,
   ],
   declarations: [
     AppComponent,
@@ -34,10 +35,12 @@ import { ProductComponent } from './components/product/product.component';
     SignupComponent,
     AddAddressComponent,
     SidebarComponent,
-    ProductComponent
+    ProductComponent,
+    CartComponent
   ],
 
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+ 
 })
 export class AppModule { }

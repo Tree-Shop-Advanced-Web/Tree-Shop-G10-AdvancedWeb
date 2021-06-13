@@ -35,7 +35,7 @@ const insertUser = (dataUser) => {
             if (err) {
                 reject(new Error('Cannot insert user to DB!'));
             } else {
-                resolve({ message: 'Singn up successfully' });
+                resolve({ message: 'Singn up successfully' , data });
             }
         });
     });
