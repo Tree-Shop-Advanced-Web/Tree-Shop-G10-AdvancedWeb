@@ -37,9 +37,35 @@ const insertProduct = (dataProduct)=>{
     })
 }
 
+const getProduct = () =>{
+    return new  Promise((resolve, reject)=>{
+        Product.find({},(err,data)=>{
+            if(err){
+                reject(new Error('Cannot get order !!!'))
+            }else{
+               if(data){
+                   resolve(data)
+               }else{
+                reject(new Error('Cannot get order !!!'))
+               }
+            }
+        })
+    })
+}
+
 router.route('/add').post(authorization,(req,res)=>{
     console.log('add');
     insertProduct(req.body).then(result =>{
+        console.log(result);
+        res.status(200).json(result)
+    }).catch(err=>{
+        console.log(err);
+    })
+})
+
+router.route('/get').get((req,res)=>{
+    console.log('add');
+    getProduct(req.body).then(result =>{
         console.log(result);
         res.status(200).json(result)
     }).catch(err=>{

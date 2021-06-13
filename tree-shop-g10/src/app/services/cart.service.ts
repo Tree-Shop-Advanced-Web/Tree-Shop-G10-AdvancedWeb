@@ -4,6 +4,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CartService {
+  counter: number = 0;
 
-  constructor() { }
+  constructor() { 
+  }
+
+  getCounter(){
+    return this.counter;
+  }
+  
 }
+
+

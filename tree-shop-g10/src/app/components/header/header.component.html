@@ -7,13 +7,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-    body,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
+    body, h1, h2, h3, h4, h5, h6 {
         font-family: "Raleway", sans-serif
     }
 
@@ -22,9 +16,6 @@
         height: 100%;
         line-height: 1;
     }
-
-    /* Full height image header */
-    
 
     .w3-bar .w3-button {
         padding: 16px;
@@ -35,7 +26,7 @@
     <!-- Navbar (sit on top) -->
     <div class="w3-top">
         <div class="w3-bar  w3-card" id="myNavbar">
-            <a href="#home" class="w3-bar-item w3-button w3-wide">LOGO</a>
+            <a href="#home" class="w3-bar-item w3-button w3-wide font-effect-shadow-multiple">LOGO</a>
             <!-- Right-sided navbar links -->
             <div class="w3-right w3-hide-small">
                 <a *ngIf="getRole() == 'admin'"  class="w3-bar-item w3-button"  routerLink="addminorder" routerLinkActive="active">Order</a>
@@ -43,6 +34,7 @@
                 <a *ngIf="local.get('user') != null"  class="w3-bar-item w3-button" >{{getUser()}}</a>
                 <a id ="login"*ngIf="local.get('user') == null"  class="w3-bar-item w3-button"  routerLink="signin" routerLinkActive="active">Login</a>
                 <a *ngIf="local.get('user') != null"  class="w3-bar-item w3-button" routerLink="" routerLinkActive="active" (click)="logout()" >Logout</a>
+                <a  class="w3-bar-item w3-button"><i class="fa fa-shopping-cart"> <span class="badge w3-text-orange">{{getCounter()}}</span></i></a>
                 
             </div>
             <!-- Hide right-floated links on small screens and replace them with a menu icon -->
