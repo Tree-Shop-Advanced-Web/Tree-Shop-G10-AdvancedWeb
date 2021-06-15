@@ -11,6 +11,7 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class SignupComponent implements OnInit {
   signupForm = new FormGroup({
+    name : new FormControl('',[Validators.required]),
     username: new FormControl('',[Validators.required,Validators.email]),
     password: new FormControl('',[Validators.required]),
     role: new FormControl('')
@@ -19,6 +20,8 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
   }
   register(){  
+    console.log("this " ,this.signupForm.value);
+    
     this.signup.signups(this.signupForm.value).subscribe(
       data => {
         if(data.message){  

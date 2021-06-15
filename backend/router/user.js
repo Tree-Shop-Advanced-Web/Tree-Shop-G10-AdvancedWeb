@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 
 var Schema = require("mongoose").Schema;
 const userSchema = Schema({
+    name :String,
     username: String,
     password: String,
     role: String
@@ -27,6 +28,7 @@ const makeHash = async (plainText) => {
 const insertUser = (dataUser) => {
     return new Promise((resolve, reject) => {
         var new_user = new User({
+            name : dataUser.name,
             username: dataUser.username,
             password: dataUser.password,
             role: dataUser.role
@@ -43,9 +45,11 @@ const insertUser = (dataUser) => {
 
 router.route('/signup')
     .post((req, res) => {
+        console.log(req.body);
         makeHash(req.body.password)
             .then(hashText => {
                 const playload = {
+                    name : req.body.name,
                     username: req.body.username,
                     password: hashText,
                     role:req.body.role

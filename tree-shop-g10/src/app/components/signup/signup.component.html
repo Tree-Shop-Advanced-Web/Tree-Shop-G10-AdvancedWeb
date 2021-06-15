@@ -69,7 +69,13 @@
     <br/>
     <div class="input-container">
       <i class="fa fa-user icon"></i>
-      <input class="input-field" type="text" placeholder="Username" id="signup" name="username">
+      <input class="input-field" type="text" placeholder="Username" id="signup" name="name" formControlName="name">
+      
+    </div>
+    <div *ngIf="(fromdata.name.dirty || fromdata.name.touched)" id="signup">
+      <div *ngIf="fromdata.name.errors?.required" class="alert alert-danger">
+        Password is required
+      </div>
     </div>
 
     <div class="input-container">

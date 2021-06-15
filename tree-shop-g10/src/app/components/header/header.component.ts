@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
     
   }
   getUser() {
-    return this.local.get('user').result.username
+    return this.local.get('user').result.name
   }
   logout() {
     this.local.clear()
