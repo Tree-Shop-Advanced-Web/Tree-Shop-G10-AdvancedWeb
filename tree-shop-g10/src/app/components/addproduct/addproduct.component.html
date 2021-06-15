@@ -1,15 +1,18 @@
+<br/>
 <div class="card">
-    <div class="card-body">
-        <div  id="addproduct" class="row">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600&family=Teko&display=swap" rel="stylesheet">
+    <div class="card-body ">
+        <div  id="addproduct" class="row" >
             <div class="col-md-2">
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8 ">
                 <form [formGroup]="productForm">
                     <div class="card">
                         <div class="card-header">
                             Product Form
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" id = "aad">
                             <div class="row">
                                 <div class="col-md-3">
                                     ประเภท:
@@ -44,7 +47,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+                    
                             <div class="row">
                                 <div class="col-md-3">
                                     ราคา:
@@ -74,8 +77,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button type="reset" class="btn btn-danger" (click)="resetForm()" id="cancle">Reset</button>
-                                    <button type="button" class="btn btn-primary" (click)="addProduct()" id="accept">Add</button>&nbsp;
+                                    <div class="modal-footer" id = "aad">
+                                    <p><button class="w3-button " (click)="addProduct()" id="accept">Add</button></p>
+                                    <p><button class="w3-button " (click)="resetForm()" id="cancle">Reset</button></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -87,3 +92,4 @@
         </div>
     </div>
 </div>
+
