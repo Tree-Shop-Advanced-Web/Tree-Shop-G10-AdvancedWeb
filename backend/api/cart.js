@@ -132,6 +132,7 @@ router.route('/put').put(authorization, (req, res) => {
         }
     }
     getCartById(req.body.userId).then(result => {
+        console.log(result)
         if (result[0].product.length > 0) {
             for (let i = 0; i < result[0].product.length; i++) {
                 if (result[0].product[i].name == playload.product.name) {

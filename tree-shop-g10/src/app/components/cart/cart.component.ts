@@ -42,7 +42,7 @@ export class CartComponent implements OnInit {
     this.order.PostOrder(data).subscribe(
       data => {
         console.log(data);
-        this.router.navigate(['/signin']);
+        this.router.navigate(['/order']);
 
       }, err => {
         console.log(err);
