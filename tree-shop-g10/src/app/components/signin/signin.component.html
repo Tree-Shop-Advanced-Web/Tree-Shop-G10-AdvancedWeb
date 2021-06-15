@@ -71,11 +71,11 @@
       <i class="fa fa-envelope icon"></i>
       <input class="input-field" type="text" placeholder="Email" id="sign"  formControlName="email">
     </div>
-    <div *ngIf=" (fromdata.username.dirty || fromdata.username.touched)" id="sign">
-      <div *ngIf="fromdata.username.errors?.required" class="alert alert-danger" >
+    <div *ngIf=" (fromdata.email.dirty || fromdata.email.touched)" id="sign">
+      <div *ngIf="fromdata.email.errors?.required" class="alert alert-danger" >
         Email is not required
       </div>
-      <div *ngIf="fromdata.username.errors?.email" class="alert alert-danger">
+      <div *ngIf="fromdata.email.errors?.email" class="alert alert-danger">
         Email is incorrect
       </div>
     </div>

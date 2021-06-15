@@ -12,11 +12,14 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  
   getRole() {
-    if (this.local.get('user') == null) {
+    if (this.local.get('user') === null) {
       return "notLogin"
     }
     return this.local.get('user').result.role
+    
   }
   getUser() {
     return this.local.get('user').result.username

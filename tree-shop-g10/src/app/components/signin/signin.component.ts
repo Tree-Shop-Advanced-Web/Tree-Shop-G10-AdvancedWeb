@@ -38,8 +38,6 @@ export class SigninComponent implements OnInit {
 
   get fromdata(){
     console.log(this.authForm.controls);
-    
-
     return this.authForm.controls
   }
 

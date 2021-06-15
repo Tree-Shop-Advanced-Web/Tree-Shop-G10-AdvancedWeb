@@ -49,6 +49,10 @@ export class CartComponent implements OnInit {
 
       })
   }
+
+  getlengthCart(){
+    return this.carts.length
+  }
   calculate() {
     let sumprice = 0
     for (let i = 0; i < this.carts.length; i++) {
