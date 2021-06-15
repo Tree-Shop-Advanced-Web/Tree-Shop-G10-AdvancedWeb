@@ -37,10 +37,25 @@ const insertCart = (dataCart) => {
         })
     })
 }
-const pushCart = (cartData,id) => {
+
+const pushCart = (cartData, id) => {
     console.log("this " + id);
     return new Promise((resolve, reject) => {
         Cart.updateOne({ userId: id }, { $push: { product: cartData.product } }, (err, data) => {
+            if (err) {
+                reject(new Error('Cannot push data cart to DB!!!'))
+            } else {
+                resolve({ message: 'Cart push successfully' }, data)
+            }
+        })
+    })
+}
+
+const pushQuantityCart = (oldquantity, cartData, id) => {
+    let myquantity = cartData.product.quantity + oldquantity
+    return new Promise((resolve, reject) => {
+        Cart.updateOne({ userId: id, "product.name":cartData.product.name}, { $set :{ 'product': { 'quantity':  myquantity,
+    'name':cartData.product.name,'detail':cartData.product.detail,'type':cartData.product.type,'price':cartData.product.price  } }}, (err, data) => {
             if (err) {
                 reject(new Error('Cannot push data cart to DB!!!'))
             } else {
@@ -54,30 +69,30 @@ const getCartById = (id) => {
     return new Promise((resolve, reject) => {
         Cart.find({ userId: id }, (err, data) => {
             if (err) {
-                reject(new Error('Cannot delete order !!!'))
+                reject(new Error('Cannot get cart !!!'))
             } else {
                 if (data) {
                     resolve(data)
                 } else {
-                    reject(new Error('Cannot delete order !!!'))
+                    reject(new Error('Cannot  get cart !!!'))
                 }
             }
         })
     })
 }
 
-const delteProductInCart = (userid,productid) =>{
+const delteProductInCart = (userid, productid) => {
     console.log();
-    return new  Promise((resolve, reject)=>{
-        Cart.updateOne({ userId: userid} ,{ $pull: { 'product': { '_id': ''+productid+'' } } } ,(err,data)=>{
-            if(err){
+    return new Promise((resolve, reject) => {
+        Cart.updateOne({ userId: userid }, { $pull: { 'product': { '_id': '' + productid + '' } } }, (err, data) => {
+            if (err) {
                 reject(new Error('Cannot Delete product !!!'))
-            }else{
-               if(data){
-                   resolve(data)
-               }else{
-                reject(new Error('Cannot Delete product !!!'))
-               }
+            } else {
+                if (data) {
+                    resolve(data)
+                } else {
+                    reject(new Error('Cannot Delete product !!!'))
+                }
             }
         })
     })
@@ -85,10 +100,10 @@ const delteProductInCart = (userid,productid) =>{
 
 router.route('/delete').post((req, res) => {
     console.log(req.body);
-    delteProductInCart(req.body.userId,req.body.productId).then(result =>{
+    delteProductInCart(req.body.userId, req.body.productId).then(result => {
         console.log(result);
         res.status(200).json(result)
-    }).catch(err=>{
+    }).catch(err => {
         console.log(err);
     })
 })
@@ -106,29 +121,53 @@ router.route('/add/:id').get((req, res) => {
     })
 })
 
-router.route('/put').put(authorization,(req, res) => {
-        let playload = {
-            product: {
-                name: req.body.product.name,
-                price: req.body.product.price,
-                detail: req.body.product.detail,
-                quantity: req.body.product.quantity,
-                type: req.body.product.type
-            }
+router.route('/put').put(authorization, (req, res) => {
+    console.log("1");
+    let playload = {
+        product: {
+            name: req.body.product.name,
+            price: req.body.product.price,
+            detail: req.body.product.detail,
+            quantity: req.body.product.quantity,
+            type: req.body.product.type
         }
-        console.log(playload);
-        pushCart(playload,req.body.userId).then(result => {
-            console.log(result);
-            res.status(200).json(result)
-        }).catch(err => {
-            console.log(err);
-        })
+    }
+    getCartById(req.body.userId).then(result => {
+        if (result[0].product.length > 0) {
+            for (let i = 0; i < result[0].product.length; i++) {
+                if (result[0].product[i].name == playload.product.name) {
+                    console.log("2");
+                    pushQuantityCart(result[0].product[i].quantity, playload, req.body.userId).then(result => {
+                        res.status(200).json(result)
+                    }).catch(err => {
+                        console.log(err);
+                    })
+                }
+                else {
+                    console.log("3");
+                    pushCart(playload, req.body.userId).then(result => {
+                        res.status(200).json(result)
+                    }).catch(err => {
+                        console.log(err);
+                    })
+                }
+            }
+        } else {
+            console.log("4");
+            pushCart(playload, req.body.userId).then(result => {
+                res.status(200).json(result)
+            }).catch(err => {
+                console.log(err);
+            })
+        }
+    }).catch(err => {
+        console.log(err);
+    })
 
 })
 
 
-router.route('/get/:id').get(authorization,(req, res) => {
-    console.log(req.params.id);
+router.route('/get/:id').get(authorization, (req, res) => {
     getCartById(req.params.id).then(result => {
         console.log(result);
         res.status(200).json(result)

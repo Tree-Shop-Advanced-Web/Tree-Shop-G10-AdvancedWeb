@@ -45,4 +45,15 @@ router.route('/add').post((req,res)=>{
     })
 })
 
+
+router.route('/put').put((req,res)=>{
+    
+})
+
+router.route('/get/:id').get((req,res)=>{
+  
+})
+
+
+
 module.exports = router
