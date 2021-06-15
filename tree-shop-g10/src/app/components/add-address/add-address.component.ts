@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { AddressService } from '../../services/address.service'
+import { LocalStorageService } from 'angular-web-storage'
+
 @Component({
   selector: 'app-add-address',
   templateUrl: './add-address.component.html',
   styleUrls: ['./add-address.component.css']
 })
 export class AddAddressComponent implements OnInit {
+  local: any;
   constructor(private ps: AddressService) { }
   addressForm = new FormGroup({
     userid : new FormControl(''),
@@ -33,7 +36,11 @@ export class AddAddressComponent implements OnInit {
       }
     )
   }
+  getUser() {
+    return this.local.get('user').result.username
+  }
 
+  
   resetForm() {
     this.addressForm.reset()
     this.previewLoaded = false
