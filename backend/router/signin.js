@@ -55,7 +55,7 @@ const findUser = (username) => {
 router.route('/signin')
     .post(async (req, res) => {
         const playload = {
-            username: req.body.username,
+            username: req.body.email,
             password: req.body.password,
         };
 
