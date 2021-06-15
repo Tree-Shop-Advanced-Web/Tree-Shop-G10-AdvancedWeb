@@ -53,8 +53,12 @@ previewLoaded : boolean = false
     }
   }
 }
+get fromdata(){
+  console.log(this.productForm.controls);
+  return this.productForm.controls
+}
 
-resetForm(){
+  resetForm(){
   this.productForm.reset()
   this.previewLoaded = false
 }

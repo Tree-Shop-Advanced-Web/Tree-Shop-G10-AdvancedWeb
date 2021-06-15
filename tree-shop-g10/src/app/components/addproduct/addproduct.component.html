@@ -34,6 +34,11 @@
                                 <div class="col-md-9">
                                     <div class="form-group">
                                       <input type="text" class="form-control" formControlName='name'>
+                                      <div *ngIf="(fromdata.name.dirty || fromdata.name.touched)" id="sign">
+                                        <div *ngIf="fromdata.name.errors?.required" class="alert alert-danger">
+                                          name is required
+                                        </div>
+                                      </div>
                                     </div>
                                 </div>
                             </div>
@@ -44,6 +49,11 @@
                                 <div class="col-md-9">
                                     <div class="form-group">
                                       <input type="text" class="form-control" formControlName='detail'>
+                                      <div *ngIf="(fromdata.detail.dirty || fromdata.detail.touched)" id="sign">
+                                        <div *ngIf="fromdata.detail.errors?.required" class="alert alert-danger">
+                                          detail is required
+                                        </div>
+                                      </div>
                                     </div>
                                 </div>
                             </div>
@@ -55,6 +65,14 @@
                                 <div class="col-md-9">
                                     <div class="form-group">
                                       <input type="number" class="form-control" formControlName='price'>
+                                      <div *ngIf="(fromdata.price.dirty || fromdata.price.touched)" id="sign">
+                                        <div *ngIf="fromdata.price.errors?.required" class="alert alert-danger">
+                                          price is required
+                                        </div>
+                                        <div *ngIf="fromdata.price.value < 0" class="alert alert-danger">
+                                           price > 0 plss
+                                        </div>
+                                      </div>
                                     </div>
                                 </div>
                             </div>
