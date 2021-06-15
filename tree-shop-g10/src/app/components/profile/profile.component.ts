@@ -8,11 +8,18 @@ import { LocalStorageService } from 'angular-web-storage'
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(public local: LocalStorageService) { }
+  constructor(private local: LocalStorageService) { }
 
   ngOnInit(): void {
   }
 
+  getRole() {
+    if (this.local.get('user') === null) {
+      return "notLogin"
+    }
+    return this.local.get('user').result.role
+    
+  }
   getUser() {
     return this.local.get('user').result.username
   }

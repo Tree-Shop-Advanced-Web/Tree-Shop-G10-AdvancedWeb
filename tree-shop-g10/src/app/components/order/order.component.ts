@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OderService} from '../../services/oder.service'
+import { LocalStorageService } from 'angular-web-storage'
+
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -8,7 +10,7 @@ import { OderService} from '../../services/oder.service'
 export class OderComponent implements OnInit {
   orders:any
   status: boolean[] = []; 
-  constructor(private od:OderService) {this.onLoading() }
+  constructor(private od:OderService, private local:LocalStorageService) {this.onLoading() }
 
   ngOnInit(): void {
   }
@@ -51,6 +53,13 @@ export class OderComponent implements OnInit {
         }
       }
     }
+  }
+  getRole() {
+    if (this.local.get('user') === null) {
+      return "notLogin"
+    }
+    return this.local.get('user').result.role
+    
   }
  putOrder(i:number){
    this.orders[i].status = "confirmation"

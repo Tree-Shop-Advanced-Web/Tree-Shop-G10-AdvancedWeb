@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OderService} from '../../services/oder.service'
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LocalStorageService } from 'angular-web-storage'
+
 @Component({
   selector: 'app-addmin-order',
   templateUrl: './addmin-order.component.html',
@@ -10,9 +12,17 @@ export class AddminOrderComponent implements OnInit {
 
   orders:any
   img:string = " "
-  constructor(private od:OderService,private modalService: NgbModal) {this.onLoading() }
+  
+  constructor(private od:OderService,private local:LocalStorageService,private modalService: NgbModal) {this.onLoading() }
 
   ngOnInit(): void {
+  }
+  getRole() {
+    if (this.local.get('user') === null) {
+      return "notLogin"
+    }
+    return this.local.get('user').result.role
+    
   }
   onLoading(){
     try{

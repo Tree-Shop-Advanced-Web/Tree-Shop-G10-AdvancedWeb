@@ -10,7 +10,7 @@ import { LocalStorageService } from 'angular-web-storage'
 })
 export class AddAddressComponent implements OnInit {
   local: any;
-  constructor(private ps: AddressService) { }
+  constructor(private ps: AddressService, private local1: LocalStorageService) { }
   addressForm = new FormGroup({
     userid : new FormControl(''),
     firstname: new FormControl('', [Validators.required]),
@@ -35,6 +35,13 @@ export class AddAddressComponent implements OnInit {
 
       }
     )
+  }
+  getRole() {
+    if (this.local1.get('user') === null) {
+      return "notLogin"
+    }
+    return this.local1.get('user').result.role
+    
   }
   getUser() {
     return this.local.get('user').result.username

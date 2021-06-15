@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { OderService } from 'src/app/services/oder.service';
 import { Router } from '@angular/router'
+import { LocalStorageService } from 'angular-web-storage'
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router'
 })
 export class CartComponent implements OnInit {
   carts: any = []
-  constructor(private router: Router,private cart: CartService, private order: OderService) { this.onLoading() }
+  constructor(private router: Router,private local:LocalStorageService,private cart: CartService, private order: OderService) { this.onLoading() }
   onLoading() {
     try {
       this.cart.getCartByUserId().subscribe(
@@ -26,6 +27,13 @@ export class CartComponent implements OnInit {
     }
   }
 
+  getRole() {
+    if (this.local.get('user') === null) {
+      return "notLogin"
+    }
+    return this.local.get('user').result.role
+    
+  }
 
   buy() {
     let mystr = ""

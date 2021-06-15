@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl , FormGroup,Validators} from '@angular/forms'
 import { ProductsService} from '../../services/product.service'
+import { LocalStorageService } from 'angular-web-storage'
 @Component({
   selector: 'app-addproduct',
   templateUrl: './addproduct.component.html',
@@ -8,7 +9,7 @@ import { ProductsService} from '../../services/product.service'
 })
 export class AddproductComponent implements OnInit {
 productType :string[] = ['ไม้คลุมดิน','ไม้กระถาง','ไม้น้ำ','ไม้พุ่มสูง']
-  constructor(private ps:ProductsService) { }
+  constructor(private ps:ProductsService, private local:LocalStorageService) { }
 productForm = new FormGroup({
   type: new FormControl('',[Validators.required]),
   name: new FormControl('',[Validators.required]),
@@ -33,6 +34,13 @@ previewLoaded : boolean = false
         
       }
     )
+  }
+  getRole() {
+    if (this.local.get('user') === null) {
+      return "notLogin"
+    }
+    return this.local.get('user').result.role
+    
   }
   onChangeImg(e:any){
   if(e.target.files.length > 0){
