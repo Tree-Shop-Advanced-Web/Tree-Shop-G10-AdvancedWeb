@@ -9,7 +9,7 @@ import { AddressService } from '../../services/address.service'
 export class AddAddressComponent implements OnInit {
   constructor(private ps: AddressService) { }
   addressForm = new FormGroup({
-    id: new FormControl('', [Validators.required]),
+    userid : new FormControl(''),
     firstname: new FormControl('', [Validators.required]),
     lastname: new FormControl('', [Validators.required]),
     phonenumber: new FormControl('', [Validators.required]),

@@ -44,6 +44,9 @@ export class SignupComponent implements OnInit {
 
 
   get fromdata(){
+    console.log(this.signupForm.controls);
+    
+
     return this.signupForm.controls
   }
 

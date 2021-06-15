@@ -51,8 +51,7 @@ const pushCart = (cartData, id) => {
     })
 }
 
-const pushQuantityCart = (oldquantity, cartData, id) => {
-    let myquantity = cartData.product.quantity + oldquantity
+const pushQuantityCart = (myquantity, cartData, id) => {
     return new Promise((resolve, reject) => {
         Cart.updateOne({ userId: id, "product.name":cartData.product.name}, { $set :{ 'product': { 'quantity':  myquantity,
     'name':cartData.product.name,'detail':cartData.product.detail,'type':cartData.product.type,'price':cartData.product.price  } }}, (err, data) => {
@@ -137,7 +136,8 @@ router.route('/put').put(authorization, (req, res) => {
             for (let i = 0; i < result[0].product.length; i++) {
                 if (result[0].product[i].name == playload.product.name) {
                     console.log("2");
-                    pushQuantityCart(result[0].product[i].quantity, playload, req.body.userId).then(result => {
+                    myquantity = result[0].product[i].quantity + playload.product.quantity
+                    pushQuantityCart(myquantity,playload, req.body.userId).then(result => {
                         res.status(200).json(result)
                     }).catch(err => {
                         console.log(err);

@@ -12,11 +12,11 @@
                           <label for="">Email</label>
                           <input type="text" class="form-control" formControlName="username">
                          
-                          <div *ngIf=" (fromdata.username.dirty || fromdata.username.touched)" class="alert alert-danger">
-                            <div *ngIf="fromdata.username.errors?.required">
-                                Email is required
+                          <div *ngIf=" (fromdata.username.dirty || fromdata.username.touched)">
+                            <div *ngIf="fromdata.username.errors?.required"  class="alert alert-danger">
+                                Email is not  required
                             </div>
-                            <div *ngIf="fromdata.username.errors?.email">
+                            <div *ngIf="fromdata.username.errors?.email"  class="alert alert-danger">
                                 Email is incorrect
                             </div>
                         </div>
@@ -25,8 +25,8 @@
                        <div class="form-group">
                           <label for="">Password</label>
                           <input type="password" class="form-control" formControlName="password">
-                          <div *ngIf="(fromdata.password.dirty || fromdata.password.touched)" class="alert alert-danger">
-                            <div *ngIf="fromdata.password.errors?.required">
+                          <div *ngIf="(fromdata.password.dirty || fromdata.password.touched)">
+                            <div *ngIf="fromdata.password.errors?.required"  class="alert alert-danger">
                                 Password is required
                             </div>        
                         </div>
