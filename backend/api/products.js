@@ -9,6 +9,8 @@ const productSchema = Schema({
     name:String,
     detail:String,
     price:Number,
+    takecare: String,
+    size: String,
     img:String
 
 },{

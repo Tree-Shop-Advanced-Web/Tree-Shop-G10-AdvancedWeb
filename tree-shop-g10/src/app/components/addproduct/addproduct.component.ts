@@ -16,6 +16,8 @@ productForm = new FormGroup({
   detail: new FormControl('',[Validators.required]),
   file: new FormControl('',[Validators.required]),
   price: new FormControl('',[Validators.required]),
+  takecare:new FormControl('',[Validators.required]),
+  size:new FormControl('',[Validators.required]),
   img: new FormControl('',[Validators.required]),
 })
 

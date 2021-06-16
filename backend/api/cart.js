@@ -97,7 +97,7 @@ const delteProductInCart = (userid, productid) => {
     })
 }
 
-router.route('/delete').post((req, res) => {
+router.route('/delete').delete((req, res) => {
     console.log(req.body);
     delteProductInCart(req.body.userId, req.body.productId).then(result => {
         console.log(result);
