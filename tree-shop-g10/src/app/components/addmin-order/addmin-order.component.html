@@ -22,7 +22,7 @@
                     <td>{{item.status}}</td>
                     <td> 
                         <span *ngIf="item.status == 'success'" class="success">ส่งของ</span>
-                        <button *ngIf="item.status != 'success'" (click)="openLg(content,item.img)" id="popup">คลิกดูสลิป</button>
+                        <button *ngIf="item.status != 'success'" (click)="openLg(content,item.img)" class="btn btn-danger"  id="popup">คลิกดูสลิป</button>
                         <button  *ngIf="item.status != 'success'"type="button" class="btn btn-primary" id="accept" (click)="conferm(i)">ยืนยัน</button>
                     </td>
                 </tr>
