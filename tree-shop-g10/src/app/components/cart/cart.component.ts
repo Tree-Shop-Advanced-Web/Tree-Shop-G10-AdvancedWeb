@@ -31,7 +31,7 @@ export class CartComponent implements OnInit {
   buy() {
     let mystr = ""
     for (let i = 0; i < this.carts.length; i++) {
-      let mystr1 = this.carts[i].name + " ราคา " + this.carts[i].price + " จำนวน " + this.carts[i].quantity + "\n||"
+      let mystr1 = this.carts[i].name + " ราคา " + this.carts[i].price + " จำนวน " + this.carts[i].quantity + " ต้น" + "\n"
       mystr += mystr1
     }
     let data = {

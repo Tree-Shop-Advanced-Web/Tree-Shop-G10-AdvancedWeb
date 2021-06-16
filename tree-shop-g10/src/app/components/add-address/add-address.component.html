@@ -1,14 +1,16 @@
 <app-sidebar></app-sidebar>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600&family=Teko&display=swap" rel="stylesheet">
     <div>
-    <div class="card-body">
+    <div class="card-body" id="address">
         <h4 class="card-title">Add Adders</h4>
         <div class="row">
             <div class="col-md-2">
             </div>
             <div class="col-md-8">
                 <form [formGroup]="addressForm">
-                    <div class="card">
-                        <div id="error"  class="card-header">
+                    <div class="card" >
+                        <div id="open" class="card-header" >
                             Address Form
                         </div>
                         <div class="card-body">
@@ -18,7 +20,7 @@
                         
                             <div class="row">
                                 <div id="error" class="col-md-3">
-                                    firstname:
+                                    Firstname:
                                 </div>
                                 <div class="col-md-9">
                                     <div class="form-group">
@@ -33,7 +35,7 @@
                             </div>
                             <div class="row">
                                 <div id="error" class="col-md-3">
-                                    lastname:
+                                    Lastname:
                                 </div>
                                 <div class="col-md-9">
                                     <div class="form-group">
@@ -48,7 +50,7 @@
                             </div>
                             <div class="row">
                                 <div id="error" class="col-md-3">
-                                    phonenumber:
+                                    Phonenumber:
                                 </div>
                                 <div class="col-md-9">
                                     <div class="form-group">
@@ -66,7 +68,7 @@
                             </div>
                             <div class="row">
                                 <div id="error0" class="col-md-3">
-                                    address detail:
+                                    Address detail:
                                 </div>
                                 <div class="col-md-9">
                                     <div class="form-group">

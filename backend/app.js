@@ -15,7 +15,7 @@ expressApp.use((req,res,next)=>{
     return next()
 })
 
-expressApp.use(expressFunction.json())
+expressApp.use(expressFunction.json({limit: '50mb'}))
 expressApp.use((req,res,next)=>{
     mongoose.connect(url,config).then(()=>{
         console.log('Conected to MongoDB');

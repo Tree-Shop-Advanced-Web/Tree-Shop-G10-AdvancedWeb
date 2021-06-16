@@ -9,3 +9,14 @@
 .container-fluid{
     margin-left: 110px;
 }
+#bt{
+    margin-bottom: 10px;
+    margin-right: 16px;
+    padding-right: 17px;
+    padding-left: 17px;
+}
+
+#aad{
+    font-family: 'Athiti', sans-serif;
+    font-size: 16px;
+}

@@ -1,20 +1,24 @@
 <app-sidebar></app-sidebar>
+<br/>
+<br/>
 <div >
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600&family=Teko&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@300;400&display=swap" rel="stylesheet">
     <div class="card-body ">
-        <div  id="addproduct" class="row" >
+        <div  class="row" >
             <div class="col-md-2">
             </div>
             <div class="col-md-8 ">
                 <form [formGroup]="productForm">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header" id="addproduct" >
                             Product Form
                         </div>
                         <div class="card-body" id = "aad">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-3" >
                                     ประเภท:
                                 </div>
                                 <div class="col-md-9">
@@ -35,7 +39,7 @@
                                     <div class="form-group">
                                       <input type="text" class="form-control" formControlName='name'>
                                       <div *ngIf="(fromdata.name.dirty || fromdata.name.touched)" id="sign">
-                                        <div *ngIf="fromdata.name.errors?.required" class="alert alert-danger">
+                                        <div *ngIf="fromdata.name.errors?.required" class="alert alert-danger" id="addproduct" >
                                           name is required
                                         </div>
                                       </div>
@@ -50,7 +54,7 @@
                                     <div class="form-group">
                                       <input type="text" class="form-control" formControlName='detail'>
                                       <div *ngIf="(fromdata.detail.dirty || fromdata.detail.touched)" id="sign">
-                                        <div *ngIf="fromdata.detail.errors?.required" class="alert alert-danger">
+                                        <div *ngIf="fromdata.detail.errors?.required" class="alert alert-danger" id="addproduct" >
                                           detail is required
                                         </div>
                                       </div>
@@ -66,10 +70,10 @@
                                     <div class="form-group">
                                       <input type="number" class="form-control" formControlName='price'>
                                       <div *ngIf="(fromdata.price.dirty || fromdata.price.touched)" id="sign">
-                                        <div *ngIf="fromdata.price.errors?.required" class="alert alert-danger">
+                                        <div *ngIf="fromdata.price.errors?.required" class="alert alert-danger" id="addproduct" > 
                                           price is required
                                         </div>
-                                        <div *ngIf="fromdata.price.value < 0" class="alert alert-danger">
+                                        <div *ngIf="fromdata.price.value < 0" class="alert alert-danger" id="addproduct" >
                                            price > 0 plss
                                         </div>
                                       </div>
@@ -96,7 +100,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="modal-footer" id = "aad">
-                                    <p><button class="w3-button " (click)="addProduct()" id="accept">Add</button></p>
+                                    <p><button class="w3-button " (click)="addProduct()" id="accept" >Add</button></p>
                                     <p><button class="w3-button " (click)="resetForm()" id="cancle">Reset</button></p>
                                     </div>
                                 </div>
