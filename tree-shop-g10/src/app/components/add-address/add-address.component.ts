@@ -15,14 +15,18 @@ export class AddAddressComponent implements OnInit {
     userId : new FormControl(''),
     firstname: new FormControl('', [Validators.required]),
     lastname: new FormControl('', [Validators.required]),
-    phonenumber: new FormControl('', [Validators.required]),
+    phonenumber: new FormControl('', [Validators.required,Validators.pattern('[0][0-9]{9}')]),
     address: new FormControl('', [Validators.required]),
   })
 
   previewLoaded: boolean = false
   ngOnInit(): void {
   }
-
+  get fromdata(){
+    console.log(this.addressForm.controls);
+    return this.addressForm.controls
+  }
+  
   onLoading(){
     try{
       this.ps.getAddressById().subscribe(
