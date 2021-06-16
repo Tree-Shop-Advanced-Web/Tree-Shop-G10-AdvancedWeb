@@ -1,10 +1,6 @@
-<br />
-<br />
-<br />
-<br />
+
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Add icon library -->
@@ -15,7 +11,6 @@
     body {
       font-family: Arial, Helvetica, sans-serif;
     }
-
     * {
       box-sizing: border-box;
     }
@@ -26,17 +21,14 @@
       display: flex;
       width: 100%;
       margin-bottom: 12px;
-      
     }
-
     .icon {
-      padding: 15px;
+      padding: 22px;
       background: rgb(49, 122, 80);
       color: white;
       min-width: 45px;
       text-align: center;
     }
-
     .input-field {
       width: 100%;
       padding: 10px;
@@ -51,7 +43,7 @@
     .btn {
       background-color: rgb(49, 122, 80);
       color: white;
-      padding: 10px 95px;
+      padding: 10px 80px;
       border: none;
       cursor: pointer;
       opacity: 0.9;
@@ -64,42 +56,46 @@
 </head>
 
 <body>
-
-  <form [formGroup]="authForm" action="/action_page.php" style="max-width:500px;margin:auto" >
-    <h2 class="w3-center" id="sign">Sign In</h2>
-    <br/>
-
-    <div class="input-container">
-      <i class="fa fa-envelope icon"></i>
-      <input class="input-field" type="text" placeholder="Email" id="sign"  formControlName="email">
+  <header class="w3-display-container w3-content w3-wide" style="max-width:1980px;" id="home">
+    <img class="w3-image" src="../../../assets/bg12.jpg" alt="Architecture" width="1980" height="500">
+    <div class="w3-display-middle w3-margin-top w3-center">
+      <form [formGroup]="authForm" action="/action_page.php" style="max-width:500px;margin:auto" >
+        <h2 class="w3-center" id="sign">Sign In</h2>
+        <br/>
+    
+        <div class="input-container">
+          <i class="fa fa-envelope icon"></i>
+          <input class="input-field" type="text" placeholder="Email" id="sign"  formControlName="email">
+        </div>
+        <div *ngIf=" (fromdata.email.dirty || fromdata.email.touched)" id="sign">
+          <div *ngIf="fromdata.email.errors?.required" class="alert alert-danger" >
+            Email is not required
+          </div>
+          <div *ngIf="fromdata.email.errors?.email" class="alert alert-danger">
+            Email is incorrect
+          </div>
+        </div>
+        <div class="input-container">
+          <i class="fa fa-key icon"></i>
+          <input class="input-field" type="password" placeholder="Password" id="sign" name="psw" formControlName="password">
+        </div>
+        <div *ngIf="(fromdata.password.dirty || fromdata.password.touched)" id="sign">
+          <div *ngIf="fromdata.password.errors?.required" class="alert alert-danger">
+            Password is required
+          </div>
+        </div>
+    
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-primary" (click)="signin()" id="sign">Sign in</button>&nbsp;
+            <button type="button" class="btn btn-info" (click)="signup()" id="sign" >Register</button>
+          </div>
+        </div>
+      </form>
+    
     </div>
-    <div *ngIf=" (fromdata.email.dirty || fromdata.email.touched)" id="sign">
-      <div *ngIf="fromdata.email.errors?.required" class="alert alert-danger" >
-        Email is not required
-      </div>
-      <div *ngIf="fromdata.email.errors?.email" class="alert alert-danger">
-        Email is incorrect
-      </div>
-    </div>
-    <div class="input-container">
-      <i class="fa fa-key icon"></i>
-      <input class="input-field" type="password" placeholder="Password" id="sign" name="psw" formControlName="password">
-    </div>
-    <div *ngIf="(fromdata.password.dirty || fromdata.password.touched)" id="sign">
-      <div *ngIf="fromdata.password.errors?.required" class="alert alert-danger">
-        Password is required
-      </div>
-    </div>
-
-    <div class="row">
-
-      <div class="col-md-12">
-        <button type="button" class="btn btn-primary" (click)="signin()" id="sign">Sign in</button>&nbsp;
-        <button type="button" class="btn btn-info" (click)="signup()" id="sign" >Register</button>
-      </div>
-    </div>
-  </form>
-
+  </header>
+  
 </body>
 
 </html>

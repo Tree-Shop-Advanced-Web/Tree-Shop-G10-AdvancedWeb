@@ -1,5 +1,4 @@
-<br />
-<br />
+
 <!DOCTYPE html>
 <html>
 
@@ -28,7 +27,7 @@
     }
 
     .icon {
-      padding: 15px;
+      padding: 22px;
       background: rgb(49, 122, 80);
       color: white;
       min-width: 45px;
@@ -38,7 +37,7 @@
     .input-field {
       width: 100%;
       padding: 10px;
-      outline: none;
+      outline: 10px;
     }
 
     .input-field:focus {
@@ -49,7 +48,7 @@
     .btn {
       background-color: rgb(49, 122, 80);
       color: white;
-      padding: 15px 20px;
+      padding: 12px 20px;
       border: none;
       cursor: pointer;
       width: 100%;
@@ -63,46 +62,51 @@
 </head>
 
 <body>
-
-  <form [formGroup]="signupForm" action="/action_page.php" style="max-width:500px;margin:auto" >
-    <h2 class="w3-center" id="signup">Register Form</h2>
-    <br/>
-    <div class="input-container">
-      <i class="fa fa-user icon"></i>
-      <input class="input-field" type="text" placeholder="Username" id="signup" name="name" formControlName="name">
-      
+  <header class="w3-display-container w3-content w3-wide" style="max-width:1920px;" id="home">
+    <img class="w3-image" src="../../../assets/signup7.jpg" alt="Architecture" width="1920" height="1080">
+    <div class="w3-display-middle w3-margin-top w3-center">
+      <form [formGroup]="signupForm" action="/action_page.php" style="max-width:500px;margin:auto" >
+        <h2 class="w3-center" id="signup">Register Form</h2>
+        <br/>
+        <div class="input-container">
+          <i class="fa fa-user icon"></i>
+          <input class="input-field" type="text" placeholder="Username" id="signup" name="name" formControlName="name">
+          
+        </div>
+        <div *ngIf="(fromdata.name.dirty || fromdata.name.touched)" id="signup">
+          <div *ngIf="fromdata.name.errors?.required" class="alert alert-danger">
+            Password is required
+          </div>
+        </div>
+    
+        <div class="input-container">
+          <i class="fa fa-envelope icon"></i>
+          <input class="input-field" type="text" placeholder="Email" id="signup" name="email" formControlName="username">
+        </div>
+        <div *ngIf=" (fromdata.username.dirty || fromdata.username.touched)" id="signup">
+          <div *ngIf="fromdata.username.errors?.required" class="alert alert-danger" >
+            Email is not required
+          </div>
+          <div *ngIf="fromdata.username.errors?.email" class="alert alert-danger">
+            Email is incorrect
+          </div>
+        </div>
+        <div class="input-container">
+          <i class="fa fa-key icon"></i>
+          <input class="input-field" type="password" placeholder="Password" id="signup" name="psw" formControlName="password">
+        </div>
+        <div *ngIf="(fromdata.password.dirty || fromdata.password.touched)" id="signup">
+          <div *ngIf="fromdata.password.errors?.required" class="alert alert-danger">
+            Password is required
+          </div>
+        </div>
+    
+        <button type="submit" class="btn" (click)="register()" id="signup">Register</button>
+      </form>
+    
     </div>
-    <div *ngIf="(fromdata.name.dirty || fromdata.name.touched)" id="signup">
-      <div *ngIf="fromdata.name.errors?.required" class="alert alert-danger">
-        Password is required
-      </div>
-    </div>
-
-    <div class="input-container">
-      <i class="fa fa-envelope icon"></i>
-      <input class="input-field" type="text" placeholder="Email" id="signup" name="email" formControlName="username">
-    </div>
-    <div *ngIf=" (fromdata.username.dirty || fromdata.username.touched)" id="signup">
-      <div *ngIf="fromdata.username.errors?.required" class="alert alert-danger" >
-        Email is not required
-      </div>
-      <div *ngIf="fromdata.username.errors?.email" class="alert alert-danger">
-        Email is incorrect
-      </div>
-    </div>
-    <div class="input-container">
-      <i class="fa fa-key icon"></i>
-      <input class="input-field" type="password" placeholder="Password" id="signup" name="psw" formControlName="password">
-    </div>
-    <div *ngIf="(fromdata.password.dirty || fromdata.password.touched)" id="signup">
-      <div *ngIf="fromdata.password.errors?.required" class="alert alert-danger">
-        Password is required
-      </div>
-    </div>
-
-    <button type="submit" class="btn" (click)="register()" id="signup">Register</button>
-  </form>
-
+  </header>
+  
 </body>
 
 </html>

@@ -99,7 +99,7 @@
 
 
 <ng-template #content let-modal>
-  <div class="modal-header">
+  <div class="modal-header" id="open">
     <h4 class="modal-title" id = "aad">รายระเอียด</h4>
   </div>
   <div class="modal-body" id = "aad">
@@ -108,6 +108,8 @@
 
     <p>ประเภท : {{products[number].type}}</p>
     <p>รายละเอียด : {{products[number].detail}}</p>
+    <p>การดูแลรักษา : {{products[number].takecare}}</p>
+    <p>ขนาด : {{products[number].size}}</p>
     <p>ราคา : {{products[number].price}} ฿</p>
 
 
