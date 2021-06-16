@@ -64,11 +64,8 @@ export class CartComponent implements OnInit {
   }
 
   deleteProduct(product: String) {
-    let mybody = {
-      productId: product,
-      userId: String
-    }
-    this.cart.deleteOneProduct(mybody).subscribe(data => {
+   
+    this.cart.deleteOneProduct(product).subscribe(data => {
       console.log(data);
       window.location.reload();
     }, err => {

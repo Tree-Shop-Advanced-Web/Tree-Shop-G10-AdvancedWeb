@@ -66,9 +66,8 @@ export class CartService {
 
   deleteOneProduct(id:any){
     let userid = this.local.get('user').result.id
-    id.userId = userid
-    console.log(id);
-    return this.http.delete<any>('http://localhost:3000/api/cart/delete',id).pipe(map(data => {
+  
+    return this.http.delete<any>('http://localhost:3000/api/cart/delete/'+id+"/"+userid).pipe(map(data => {
       if(data){
         console.log(data);
         this.cart=data
