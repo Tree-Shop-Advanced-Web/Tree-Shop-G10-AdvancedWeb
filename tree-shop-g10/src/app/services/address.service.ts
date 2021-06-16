@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient ,HttpHeaders} from '@angular/common/http'
 import { map } from 'rxjs/operators'
 import { LocalStorageService } from 'angular-web-storage'
 @Injectable({
@@ -18,16 +18,22 @@ export class AddressService {
 
   
   putAddress(address:any) {
+    let token = this.local.get('user').token
     console.log(address);
-    return this.http.put<any>('http://localhost:3000/api/user/put/',address).pipe(map(data => {
+    return this.http.put<any>('http://localhost:3000/api/user/put/',address, {
+      headers: new HttpHeaders().set('Authorization', token),
+    }).pipe(map(data => {
       return data
     }))
   }
 
   
   getAddressById() {
+    let token = this.local.get('user').token
     let userid = this.local.get('user').result.id
-    return this.http.get<any>('http://localhost:3000/api/user/get/'+userid).pipe(map(data => {
+    return this.http.get<any>('http://localhost:3000/api/user/get/'+userid, {
+      headers: new HttpHeaders().set('Authorization', token),
+    }).pipe(map(data => {
       return data
     }))
   }

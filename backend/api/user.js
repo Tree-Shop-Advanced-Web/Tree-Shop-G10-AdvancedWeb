@@ -80,7 +80,7 @@ router.route('/add/:id').post((req,res)=>{
 })
 
 
-router.route('/put').put((req,res)=>{
+router.route('/put').put(authorization,(req,res)=>{
     console.log(req.body);
     addressPut(req.body).then(result=>{
         res.status(200).json(result)
@@ -89,7 +89,7 @@ router.route('/put').put((req,res)=>{
     })
 })
 
-router.route('/get/:id').get((req,res)=>{
+router.route('/get/:id').get(authorization,(req,res)=>{
     getAddressById(req.params.id).then(result=>{
         res.status(200).json(result)
     }).catch(err=>{

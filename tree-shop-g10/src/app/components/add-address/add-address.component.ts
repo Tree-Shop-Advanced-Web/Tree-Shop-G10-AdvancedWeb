@@ -27,9 +27,7 @@ export class AddAddressComponent implements OnInit {
     try{
       this.ps.getAddressById().subscribe(
         data =>{
-          this.address = data 
-          console.log(this.address[0].first);
-          
+          this.address = data     
         },
         err =>{
            console.log(err);
