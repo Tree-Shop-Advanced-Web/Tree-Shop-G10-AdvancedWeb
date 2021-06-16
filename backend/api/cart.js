@@ -98,7 +98,7 @@ const delteProductInCart = (userid, productid) => {
 }
 
 
-router.route('/delete/:idproduct/:iduser').delete((req, res) => {
+router.route('/delete/:idproduct/:iduser').delete(authorization,(req, res) => {
     delteProductInCart(req.params.iduser, req.params.idproduct).then(result => {
         console.log(result);
         res.status(200).json(result)

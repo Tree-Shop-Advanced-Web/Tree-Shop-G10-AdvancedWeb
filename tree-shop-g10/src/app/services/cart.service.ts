@@ -66,8 +66,10 @@ export class CartService {
 
   deleteOneProduct(id:any){
     let userid = this.local.get('user').result.id
-  
-    return this.http.delete<any>('http://localhost:3000/api/cart/delete/'+id+"/"+userid).pipe(map(data => {
+    let token = this.local.get('user').token
+    return this.http.delete<any>('http://localhost:3000/api/cart/delete/'+id+"/"+userid,{
+      headers: new HttpHeaders().set('Authorization', token),
+    }).pipe(map(data => {
       if(data){
         console.log(data);
         this.cart=data
