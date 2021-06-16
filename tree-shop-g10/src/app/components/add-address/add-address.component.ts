@@ -9,10 +9,10 @@ import { LocalStorageService } from 'angular-web-storage'
   styleUrls: ['./add-address.component.css']
 })
 export class AddAddressComponent implements OnInit {
-  local: any;
-  constructor(private ps: AddressService, private local1: LocalStorageService) { }
+  address:any
+  constructor(private ps: AddressService, private local: LocalStorageService) {this.onLoading() }
   addressForm = new FormGroup({
-    userid : new FormControl(''),
+    userId : new FormControl(''),
     firstname: new FormControl('', [Validators.required]),
     lastname: new FormControl('', [Validators.required]),
     phonenumber: new FormControl('', [Validators.required]),
@@ -22,34 +22,38 @@ export class AddAddressComponent implements OnInit {
   previewLoaded: boolean = false
   ngOnInit(): void {
   }
-  addAddress() {
-    console.log(this.addressForm.value)
-    this.ps.addAddress(this.addressForm.value).subscribe(
-      data => {
-        console.log(data);
-        alert('Address added successfully')
-        this.addressForm.reset()
-      },
-      err => {
-        console.log(err);
 
-      }
-    )
-  }
-  getRole() {
-    if (this.local1.get('user') === null) {
-      return "notLogin"
+  onLoading(){
+    try{
+      this.ps.getAddressById().subscribe(
+        data =>{
+          this.address = data 
+          this.addressForm.value.firstname = data[0].firstname
+          console.log(data );
+          
+        },
+        err =>{
+           console.log(err);
+        }
+      )
+    }catch(err){
+      console.log(err);
     }
-    return this.local1.get('user').result.role
-    
   }
+
+
   getUser() {
     return this.local.get('user').result.username
   }
-
-  
-  resetForm() {
-    this.addressForm.reset()
-    this.previewLoaded = false
+  putData(){
+    this.addressForm.value.userId = this.local.get('user').result.id
+    this.ps.putAddress(this.addressForm.value).subscribe(data=>{
+      alert("add address successfull !!!")
+      
+    },err=>{
+      console.log(err);
+      
+    })
   }
+
 }

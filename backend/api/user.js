@@ -5,11 +5,11 @@ const mongoose = require('mongoose')
 
 var Schema = require("mongoose").Schema
 const addressSchema = Schema({  
-    fistname:String,
+    userId:String,
+    firstname:String,
     lastname:String,
     phonenumber:String,
     address:String
-
 },{
     coolection:'addresses'
 })
@@ -35,9 +35,43 @@ const insertAdderss = (dataAddress)=>{
     })
 }
 
-router.route('/add').post((req,res)=>{
-    console.log('add');
-    insertAdderss(req.body).then(result =>{
+const addressPut = (addressData) =>{
+    return new  Promise((resolve, reject)=>{
+        Address.findOneAndUpdate({userId:addressData.userId},{firstname:addressData.firstname,lastname:addressData.lastname,phonenumber:addressData.phonenumber,address:addressData.address },(err,data)=>{
+            if(err){
+                reject(new Error('Cannot put address !!!'))
+            }else{
+               if(data){
+                   resolve(data)
+               }else{
+                reject(new Error('Cannot put address !!!'))
+               }
+            }
+        })
+    })
+}
+
+const getAddressById = (id) =>{
+    return new  Promise((resolve, reject)=>{
+        Address.find({userId:id},(err,data)=>{
+            if(err){
+                reject(new Error('Cannot get address !!!'))
+            }else{
+               if(data){
+                   resolve(data)
+               }else{
+                reject(new Error('Cannot get address !!!'))
+               }
+            }
+        })
+    })
+}
+
+router.route('/add/:id').post((req,res)=>{
+     let playload ={
+         userId : req.params.id
+     }
+    insertAdderss(playload).then(result =>{
         console.log(result);
         res.status(200).json(result)
     }).catch(err=>{
@@ -47,11 +81,20 @@ router.route('/add').post((req,res)=>{
 
 
 router.route('/put').put((req,res)=>{
-    
+    console.log(req.body);
+    addressPut(req.body).then(result=>{
+        res.status(200).json(result)
+    }).catch(err=>{
+        console.log(err);
+    })
 })
 
 router.route('/get/:id').get((req,res)=>{
-  
+    getAddressById(req.params.id).then(result=>{
+        res.status(200).json(result)
+    }).catch(err=>{
+        console.log(err);
+    })
 })
 
 

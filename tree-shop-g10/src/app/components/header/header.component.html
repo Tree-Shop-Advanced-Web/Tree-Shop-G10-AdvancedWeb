@@ -36,8 +36,6 @@
                 
                     {{getUser()}}
                 </a>
-                <a *ngIf="getRole() == 'admin'"  class="w3-bar-item w3-button w3-hover-teal"  routerLink="addminorder" routerLinkActive="active">Order</a>
-                <a *ngIf="getRole() == 'admin'"  class="w3-bar-item w3-button w3-hover-teal"  routerLink="addproduct" routerLinkActive="active">Add Product</a>
                 <a id ="login"*ngIf="local.get('user') == null"  class="w3-bar-item w3-button w3-hover-teal"  routerLink="signin" routerLinkActive="active">Login</a>
                 <a *ngIf="local.get('user') != null"  class="w3-bar-item w3-button w3-hover-teal" routerLink="" routerLinkActive="active" (click)="logout()" >Logout</a>
                 <a  class="w3-bar-item w3-button w3-hover-teal" routerLink="cart" routerLinkActive="active"><i class="fa fa-shopping-cart"> <span class="badge w3-text-orange"></span></i></a>

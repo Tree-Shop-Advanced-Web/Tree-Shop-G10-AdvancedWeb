@@ -15,15 +15,18 @@ import { AddAddressComponent } from './components/add-address/add-address.compon
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ProductComponent } from './components/product/product.component';
 import { CartComponent } from './components/cart/cart.component';
-
+import { CommonModule } from '@angular/common';
+import { ProfileComponent } from './components/profile/profile.component';
 @NgModule({
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
+    
   ],
   declarations: [
     AppComponent,
@@ -36,7 +39,8 @@ import { CartComponent } from './components/cart/cart.component';
     AddAddressComponent,
     SidebarComponent,
     ProductComponent,
-    CartComponent
+    CartComponent,
+    ProfileComponent
   ],
 
   providers: [],

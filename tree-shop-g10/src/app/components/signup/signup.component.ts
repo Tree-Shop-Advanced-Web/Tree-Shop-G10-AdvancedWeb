@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SignupService } from '../../services/signup.service'
 import { Router } from '@angular/router'
-import { CartComponent } from '../cart/cart.component';
+import { AddressService } from '../../services/address.service';
 import { CartService } from 'src/app/services/cart.service';
 @Component({
   selector: 'app-signup',
@@ -16,7 +16,7 @@ export class SignupComponent implements OnInit {
     password: new FormControl('',[Validators.required]),
     role: new FormControl('')
   });
-  constructor(private router: Router,private signup: SignupService,private cart:CartService) { }
+  constructor(private router: Router,private signup: SignupService,private cart:CartService,private address:AddressService) { }
   ngOnInit(): void {
   }
   register(){  
@@ -34,6 +34,14 @@ export class SignupComponent implements OnInit {
                console.log(err);   
             }
           )
+          this.address.addAddress(data.data).subscribe(
+            data => {
+              console.log(data);
+            },
+            err => {
+              console.log(err);
+            }
+          )
           this.router.navigate(['/signin']);
         }else{
           alert('Cannot Sign up');
@@ -45,7 +53,7 @@ export class SignupComponent implements OnInit {
       });
   }
 
-
+  
   get fromdata(){
     console.log(this.signupForm.controls);
     

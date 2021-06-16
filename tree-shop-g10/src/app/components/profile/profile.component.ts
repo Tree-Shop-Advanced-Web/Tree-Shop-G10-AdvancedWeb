@@ -13,13 +13,9 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getRole() {
-    if (this.local.get('user') === null) {
-      return "notLogin"
-    }
-    return this.local.get('user').result.role
-    
-  }
+
+
+  
   getUser() {
     return this.local.get('user').result.username
   }

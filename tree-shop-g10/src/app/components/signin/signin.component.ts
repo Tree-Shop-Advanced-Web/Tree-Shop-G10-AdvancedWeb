@@ -36,6 +36,9 @@ export class SigninComponent implements OnInit {
     this.router.navigate(['/signup']);
   }
 
+
+  
+  
   get fromdata(){
     console.log(this.authForm.controls);
     return this.authForm.controls

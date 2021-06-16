@@ -107,8 +107,7 @@ router.route('/delete').post((req, res) => {
     })
 })
 
-router.route('/add/:id').get((req, res) => {
-    console.log(req.params.id);
+router.route('/add/:id').post((req, res) => {
     const playload = {
         userId: req.params.id
     }

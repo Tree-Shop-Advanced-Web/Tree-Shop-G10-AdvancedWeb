@@ -15,7 +15,7 @@ export class CartService {
   addCart(data:any){
     console.log("this " + data._id);
     let id =  data._id
-    return this.http.get<any>('http://localhost:3000/api/cart/add/'+id).pipe(map(data => {
+    return this.http.post<any>('http://localhost:3000/api/cart/add/'+id,"").pipe(map(data => {
       if(data){
         console.log(data);
         this.cart=data
