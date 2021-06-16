@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                      <input id="error" type="text" class="form-control"  formControlName='firstname'>
+                                      <input id="error" type="text" class="form-control" placeholder="{{address[0].firstname}}" formControlName='firstname'>
                                     </div>
                                 </div>
                             </div>
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                      <input id="error" type="text" class="form-control" formControlName='lastname'>
+                                      <input id="error" type="text" class="form-control" placeholder="{{address[0].lastname}}"formControlName='lastname'>
                                     </div>
                                 </div>
                             </div>
@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                      <input id="error" type="text" class="form-control" formControlName='phonenumber'>
+                                      <input id="error" type="text" class="form-control" placeholder="{{address[0].phonenumber}}" formControlName='phonenumber'>
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <br>
-                                    <textarea id="error" class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName='address'></textarea>
+                                    <textarea id="error" class="form-control" id="exampleFormControlTextarea1" rows="3"  placeholder="{{address[0].address}}" formControlName='address'></textarea>
                                     </div>
                                 </div>
                             </div>

@@ -28,8 +28,7 @@ export class AddAddressComponent implements OnInit {
       this.ps.getAddressById().subscribe(
         data =>{
           this.address = data 
-          this.addressForm.value.firstname = data[0].firstname
-          console.log(data );
+          console.log(this.address[0].first);
           
         },
         err =>{
