@@ -10,8 +10,7 @@ export class AddressService {
   constructor(private http: HttpClient,private local:LocalStorageService) { }
 
   addAddress(address:any) {
-    let id = address._id
-    return this.http.post<any>('http://localhost:3000/api/user/add/'+id,"").pipe(map(data => {
+    return this.http.post<any>('http://localhost:3000/api/user/add/',address).pipe(map(data => {
       return data
     }))
   }

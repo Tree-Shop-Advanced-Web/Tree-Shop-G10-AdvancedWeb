@@ -67,9 +67,13 @@ const getAddressById = (id) =>{
     })
 }
 
-router.route('/add/:id').post((req,res)=>{
+router.route('/add').post((req,res)=>{
      let playload ={
-         userId : req.params.id
+         userId : req.body.userId,
+         firstname:req.body.firstname,
+         lastname:req.body.lastname,
+         address:req.body.address,
+         phonenumber:req.body.phonenumber
      }
     insertAdderss(playload).then(result =>{
         console.log(result);

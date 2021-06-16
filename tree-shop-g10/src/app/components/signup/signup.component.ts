@@ -34,7 +34,14 @@ export class SignupComponent implements OnInit {
                console.log(err);   
             }
           )
-          this.address.addAddress(data.data).subscribe(
+          let playload = {
+            firstname : '',
+            lastname : '',
+            address : '',
+            phonenumber:'',
+            userId : data.data._id
+          }
+          this.address.addAddress(playload).subscribe(
             data => {
               console.log(data);
             },
